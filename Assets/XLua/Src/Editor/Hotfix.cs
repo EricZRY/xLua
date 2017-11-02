@@ -1057,8 +1057,13 @@ namespace XLua
             }
 
 #if UNITY_EDITOR_OSX
+            #if UNITY_2017_1_OR_NEWER
+            var mono_path = Path.Combine(Path.GetDirectoryName(typeof(UnityEngine.Debug).Module.FullyQualifiedName),
+                "../../MonoBleedingEdge/bin/mono");
+            #else
 			var mono_path = Path.Combine(Path.GetDirectoryName(typeof(UnityEngine.Debug).Module.FullyQualifiedName),
 				"../MonoBleedingEdge/bin/mono");
+            #endif
 #elif UNITY_EDITOR_WIN
             var mono_path = Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName),
                 "Data/MonoBleedingEdge/bin/mono.exe");
